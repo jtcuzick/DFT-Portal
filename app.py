@@ -10,8 +10,19 @@ from ts_animation import (
 
 st.set_page_config(
     page_title="DFT Portal",
-    page_icon="🧪",
+    page_icon="",
     layout="wide",
+)
+
+st.markdown(
+    """
+    <style>
+        [data-testid="stSidebar"] {
+            display: none;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
 )
 
 init_db()
