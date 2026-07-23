@@ -1,0 +1,5 @@
+streamlit
+cclib
+py3Dmol
+numpy
+pandas
