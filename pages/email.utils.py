@@ -11,7 +11,7 @@ def send_email(
     body,
 ):
     """
-    Send an email using credentials stored
+    Send an email using the Gmail account stored
     in Streamlit secrets.
     """
 
@@ -27,10 +27,7 @@ def send_email(
     message["Subject"] = subject
 
     message.attach(
-        MIMEText(
-            body,
-            "plain",
-        )
+        MIMEText(body, "plain")
     )
 
     with smtplib.SMTP(
@@ -58,64 +55,14 @@ def send_request_notification(
     admin_email,
 ):
     """
-    Send:
-    1. A confirmation email to the requester.
-    2. A notification email to the DFT administrator.
+    Send a new-request notification to the DFT administrator.
     """
 
     ticket_number = f"DFT-{request_id:04d}"
 
-    # ======================================================
-    # REQUESTER CONFIRMATION
-    # ======================================================
+    subject = f"New DFT Request: {ticket_number}"
 
-    requester_subject = (
-        f"{ticket_number} — DFT Request Received"
-    )
-
-    requester_body = f"""
-Hi {requester_name},
-
-Your DFT calculation request has been received successfully.
-
-Ticket number:
-{ticket_number}
-
-Molecule / system:
-{molecule_name}
-
-Requested calculation:
-{calculation_type}
-
-Scientific question:
-{scientific_question}
-
-Your request will now be reviewed and the appropriate
-computational approach will be selected based on the
-chemical context of the problem.
-
-Please reference {ticket_number} if you have any questions
-regarding this calculation.
-
-Best,
-MCK Lab DFT Portal
-"""
-
-    send_email(
-        requester_email,
-        requester_subject,
-        requester_body,
-    )
-
-    # ======================================================
-    # ADMIN NOTIFICATION
-    # ======================================================
-
-    admin_subject = (
-        f"New DFT Request: {ticket_number}"
-    )
-
-    admin_body = f"""
+    body = f"""
 A new DFT calculation request has been submitted.
 
 Ticket:
@@ -124,7 +71,7 @@ Ticket:
 Submitted by:
 {requester_name}
 
-Email:
+Requester email:
 {requester_email}
 
 Molecule / system:
@@ -140,7 +87,7 @@ Open the MCK Lab DFT Portal to review the request.
 """
 
     send_email(
-        admin_email,
-        admin_subject,
-        admin_body,
+        to_email=admin_email,
+        subject=subject,
+        body=body,
     )
