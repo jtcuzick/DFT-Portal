@@ -48,7 +48,7 @@ def send_email(
         server.send_message(message)
 
 
-def send_request_notifications(
+def send_request_notification(
     request_id,
     requester_name,
     requester_email,
