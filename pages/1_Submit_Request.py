@@ -3,7 +3,7 @@ from pathlib import Path
 import streamlit as st
 
 from database import create_request, init_db
-from email_utils import send_request_notifications
+from email_utils import send_request_notification
 
 
 init_db()
@@ -384,12 +384,9 @@ if submitted:
         # EMAIL NOTIFICATIONS
         # ==================================================
 
-        email_sent = False
-
-
         try:
 
-            send_request_notifications(
+            send_request_notification(
                 request_id=request_id,
                 requester_name=submitted_by.strip(),
                 requester_email=email.strip(),
@@ -399,14 +396,11 @@ if submitted:
                 admin_email="jcuzick@sas.upenn.edu",
             )
 
-            email_sent = True
-
-
         except Exception as exc:
 
             st.warning(
-                "Your request was saved successfully, "
-                "but the email notification could not be sent."
+                "The calculation request was saved, "
+                "but the notification email could not be sent."
             )
 
             st.caption(
@@ -419,19 +413,5 @@ if submitted:
         # ==================================================
 
         st.success(
-            f"Request submitted successfully. "
-            f"Your ticket number is **{ticket_number}**."
-        )
-
-
-        if email_sent:
-
-            st.info(
-                f"A confirmation email has been sent to "
-                f"{email.strip()}."
-            )
-
-
-        st.caption(
-            "Current status: Submitted"
+            "Calculation received."
         )
