@@ -83,7 +83,7 @@ for col, log_path in zip(cols, ts_files):
 
             viewer = build_ts_viewer(
                 frames,
-                width=380,
+                width=500,
                 height=350,
             )
 
