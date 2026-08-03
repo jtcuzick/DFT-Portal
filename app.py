@@ -43,7 +43,7 @@ with col1:
 
 with col2:
     if st.button(
-        "View Calculations",
+        "Analysis Tools",
         use_container_width=True,
     ):
         st.switch_page("pages/2_View_Requests.py")
