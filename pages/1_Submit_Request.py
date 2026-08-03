@@ -131,6 +131,7 @@ uploaded = st.file_uploader(
         "xyz",
         "mol",
         "sdf",
+        "cdxml",
         "mol2",
     ],
 )
