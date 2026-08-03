@@ -24,14 +24,10 @@ st.markdown(
 
 init_db()
 
-back_col, title_col = st.columns([1, 10])
+if st.button("← Back"):
+    st.switch_page("app.py")
 
-with back_col:
-    if st.button("←", use_container_width=True):
-        st.switch_page("app.py")
-
-with title_col:
-    st.title("Submit a DFT Request")
+st.title("Submit a DFT Request")
 
 UPLOAD_DIR = Path(__file__).resolve().parents[1] / "uploads"
 UPLOAD_DIR.mkdir(exist_ok=True)
