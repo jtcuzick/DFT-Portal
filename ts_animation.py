@@ -154,7 +154,7 @@ def generate_xyz_frames(
 
 def build_ts_viewer(
     frames,
-    width=380,
+    width=500,
     height=350,
 ):
     """
