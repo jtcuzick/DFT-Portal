@@ -5,6 +5,23 @@ import streamlit as st
 from database import create_request, init_db
 from email_utils import send_request_notification
 
+# Hide Streamlit's built-in sidebar
+
+st.markdown(
+    """
+    <style>
+        [data-testid="stSidebar"] {
+            display: none;
+        }
+
+        [data-testid="stSidebarCollapsedControl"] {
+            display: none;
+        }
+    </style>
+    """,
+    unsafe_allow_html=True,
+)
+
 
 init_db()
 
